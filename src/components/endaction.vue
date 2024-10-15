@@ -5,13 +5,10 @@ const router = useRouter()
 import { useViewControlStore } from '@/stores/viewcontrol.js'
 const store = useViewControlStore()
 
-import { useResultStore } from '@/stores/result.js'
 import { ref } from "vue"
 
-const result = useResultStore()
-
-//const blob = new Blob([result.data], { type: 'image/jpeg' });
-const imageUrl = ref(URL.createObjectURL(result.data))
+const picture = localStorage.getItem("time")
+const imageUrl = ref(`/images/${picture}.jpg`)
 </script>
 <template>
   <div class="flex justify-between h-24 w-80">

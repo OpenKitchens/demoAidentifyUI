@@ -1,61 +1,12 @@
 <script setup>
 import Topbar from "@/components/resulttopbar.vue"
 import EndAction from "@/components/endaction.vue"
-import { useResultStore } from '@/stores/result.js'
-import { ref } from "vue"
+import { ref } from 'vue'
 
-const result = useResultStore()
+const picture = localStorage.getItem("time")
+const imageUrl = ref(`/images/${picture}.jpg`)
 
-//const blob = new Blob([result.data], { type: 'image/jpeg' });
-const imageUrl = ref(URL.createObjectURL(result.data))
-
-
-
-/*const escapedString = URL.createObjectURL(blob)
-const binaryString = escapeToBinary(escapedString);
-const base64String = binaryToBase64(binaryString);
-
-//const imageUrl = ref(`data:image/jpeg;base64,${base64String}`)
-
-
-function escapeToBinary(escapedString) {
-  // Unicodeエスケープシーケンスを16進数に変換する正規表現
-  const regex = /\\u([\d\w]{4})/gi;
-  return escapedString.replace(regex, (match, hex) => {
-    return String.fromCharCode(parseInt(hex, 16));
-  });
-}
-
-function binaryToBase64(binaryString) {
-  const byteArray = new TextEncoder().encode(binaryString);
-  return btoa(String.fromCharCode.apply(null, byteArray));
-}*/
-
-function blobToBase64(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      resolve(reader.result.split(',')[1]); // Base64部分のみ抽出
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
-
-const historys = localStorage.getItem("historyDatas")
-if (historys) {
-  let data = JSON.parse(historys)
-
-  blobToBase64(result.data).then(base64String => {
-    data.push({ img: base64String, publishedAt: new Date().toLocaleDateString('sv-SE') })
-    localStorage.setItem("historyDatas", JSON.stringify(data))
-  })
-} else {
-  blobToBase64(result.data).then(base64String => {
-    localStorage.setItem("historyDatas", JSON.stringify([{ img: base64String, publishedAt: new Date().toLocaleDateString('sv-SE') }]))
-  })
-}
-
+console.log("hello")
 </script>
 
 <template>

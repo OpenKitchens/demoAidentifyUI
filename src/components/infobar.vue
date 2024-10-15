@@ -16,26 +16,7 @@ const url = useUrlStore()
 
 //store.router("loading")
 
-const data = ref("wait...")
-
-const formData = new FormData();
-  formData.append('file', image.data);
-
-  console.log("hello")
-
-axios.post(`${url.data}/classify-image/`, formData, {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }
-})
-  .then(response => {
-    classifyStore.data = response.data.danger
-    console.log(response.data.danger)
-    data.value = response.data.danger
-  })
-  .catch(error => {
-    console.error(error);
-  });
+const data = ref("70")
 
 </script>
 <template>

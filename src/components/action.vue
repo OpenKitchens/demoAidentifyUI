@@ -21,66 +21,15 @@ console.log(store.viewpinia)
 const router = useRouter()
 
 const uploadImage = () => {
-  store.router("loading")
+  //store.router("loading")
 
-  //const imageBlob = dataURLtoBlob(image.data)
-
-  const formData = new FormData();
-
-  //const point1 = [parseInt(222, 10), parseInt(100, 10)];
-  //const point2 = [parseInt(444, 10), parseInt(200, 10)];
-
-
-  formData.append('image', image.data);
-  formData.append('risk_level', select.data);
-
-  //alert(coordinate.state)
-
-  //alert("special-lama")
-  formData.append('x1', parseFloat(coordinate.data.point1.xPos / coordinate.width))
-  formData.append('y1', parseFloat(coordinate.data.point1.yPos / coordinate.height))
-  formData.append('x2', parseFloat(coordinate.data.point2.xPos / coordinate.width))
-  formData.append('y2', parseFloat(coordinate.data.point2.yPos / coordinate.height))
-
-  console.log("x1:" + coordinate.data.point1.xPos / coordinate.width + "y1:" + coordinate.data.point1.yPos / coordinate.height + "x2:" + coordinate.data.point2.xPos / coordinate.width + "y2:" + coordinate.data.point2.yPos / coordinate.height)
-
-  axios.post(`${url.data}/create-mask-and-inpaint-sum`, formData, {
-    responseType: 'blob',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  })
-    .then(response => {
-      result.data = response.data
-      router.push("result");
-    })
-    .catch(error => {
-      console.error(error);
-      router.push("result")
-    });
-  //formData.append('point2', ["444","200"])
-
-
-  /*
-
-fetch("https://wired-kitten-adequately.ngrok-free.app/create-mask-and-inpaint-opencv", {
-  method: 'POST',
-  body: formData
-})
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.blob();
-  })
-  .then(blob => {
-    const objectURL = URL.createObjectURL(blob);
-    console.log(objectURL)
-  })
-  .catch(error => {
-    console.error("画像処理に失敗しました。", error);
-    alert("画像処理に失敗しました。");
-  });*/
+  if(localStorage.getItem('time')){
+    localStorage.setItem('time', Number(localStorage.getItem('time')) + 1)
+  }else{
+    localStorage.setItem('time', 0)
+  }
+  
+  router.push('result')
 }
 </script>
 <template>
