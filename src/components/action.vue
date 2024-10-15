@@ -22,12 +22,6 @@ const router = useRouter()
 
 const uploadImage = () => {
   //store.router("loading")
-
-  if(localStorage.getItem('time')){
-    localStorage.setItem('time', Number(localStorage.getItem('time')) + 1)
-  }else{
-    localStorage.setItem('time', 0)
-  }
   
   router.push('result')
 }

@@ -3,6 +3,9 @@ import { ref, computed, onMounted } from 'vue';
 import { useImageStore } from '@/stores/image.js'
 const image = useImageStore()
 
+import { useIndexImageStore } from '@/stores/indexImage.js'
+const indexImage = useIndexImageStore()
+
 import { useViewControlStore } from '@/stores/viewcontrol.js'
 const store = useViewControlStore()
 
@@ -12,7 +15,7 @@ const view = computed(() => store.viewpinia)
 import { useCoordinateStore } from '@/stores/coordinate.js'
 const coordinate = useCoordinateStore()
 
-const imageUrl = ref(null);
+const imageUrl = ref(`/images/${indexImage.data}.jpg`);
 
 const uploadedImage = ref(null) // refで画像要素を参照
 
@@ -35,11 +38,11 @@ onMounted(() => {
 const file = image.data
 
 // FileReader API を使って画像データを base64 文字列に変換
-const reader = new FileReader();
+/*const reader = new FileReader();
 reader.readAsDataURL(file);
 reader.onload = () => {
   imageUrl.value = reader.result;
-};
+};*/
 
 const xPos = ref(0)
 const yPos = ref(0)
@@ -124,12 +127,12 @@ const getClickPosition = (event) => {
       :style="point1Style"></div>
     <div class="point2 fixed z-100 rounded-full w-5 h-5 bg-[#ffffff] shadow-2xl shadow-black"
       :style="point2Style"></div>
-    <img v-if="imageUrl" :src="imageUrl" alt="アップロードされた画像" class="w-[100vw]" @click="getClickPosition" ref="uploadedImage">
+    <img :src="imageUrl" alt="アップロードされた画像" class="w-[100vw]" @click="getClickPosition" ref="uploadedImage">
     <p class="text-[#ffffff99] text-center">{{ xPos }},{{ yPos }}</p>
   </div>
 
   <div class="normal" v-show="!view.editText">
-    <img v-if="imageUrl" :src="imageUrl" alt="アップロードされた画像" class="w-[100vw]">
+    <img :src="imageUrl" alt="アップロードされた画像" class="w-[100vw]">
   </div>
   <!--  {{ beforeXpos }}, {{ beforeYpos }}
   <p class="text-[#ffffff99] text-center">{{ space }}</p>
