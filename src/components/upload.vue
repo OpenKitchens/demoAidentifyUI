@@ -32,4 +32,5 @@ const uploadSelectShow = ref(false)
 .v-leave-to {
   opacity: 0;
 }
+
 </style>
