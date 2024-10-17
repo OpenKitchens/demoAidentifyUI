@@ -15,7 +15,7 @@ const view = computed(() => store.viewpinia)
 import { useCoordinateStore } from '@/stores/coordinate.js'
 const coordinate = useCoordinateStore()
 
-const imageUrl = ref(`/images/${indexImage.data}.jpg`);
+const imageUrl = ref(`/images/before/${indexImage.data}.jpg`);
 
 const uploadedImage = ref(null) // refで画像要素を参照
 

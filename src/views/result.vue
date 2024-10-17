@@ -7,7 +7,7 @@ import { useIndexImageStore } from '@/stores/indexImage.js'
 
 const IndexImage = useIndexImageStore()
 
-const imageUrl = ref(`/images/${IndexImage.data}.jpg`)
+const imageUrl = ref(`/images/after/${IndexImage.data}.png`)
 
 
 console.log("hello")
